@@ -15,28 +15,15 @@ public class Shooter : MonoBehaviour
     void Update()
     {
         ProcessMouseInput();
+        
     }
 
     private void ProcessMouseInput(){
         if (Input.GetMouseButtonDown(0)){
             Debug.Log("Pressed primary button.");
             fireBending.SetActive(true);
-            
-
-            //Get the Screen positions of the object
-            Vector2 positionOnScreen = Camera.main.WorldToViewportPoint (transform.position);
-            
-            //Get the Screen position of the mouse
-            Vector2 mouseOnScreen = (Vector2)Camera.main.ScreenToViewportPoint(Input.mousePosition);
-            
-            //Get the angle between the points
-            float angle = AngleBetweenTwoPoints(positionOnScreen, mouseOnScreen);
-
-            print(angle);
-    
-            //Ta Daaa
-            Quaternion rotation =  Quaternion.Euler (new Vector3(0f,0f,angle));
-            Instantiate(fireBending, transform.position, rotation);
+ 
+            Instantiate(fireBending, transform.position, Quaternion.identity);
         }
     }
  
